@@ -1,0 +1,50 @@
+<%- include('../partials/header.ejs') %>
+
+<div id="signinForm">
+   <div class="panel panel-primary">
+      <!-- signup title -->
+      <div class="panel-heading">
+         <h1 style="text-align:center">SIGN UP</h1>
+      </div>
+
+      <div class="panel-body">
+         <form class="" action="/signup" method="post">
+
+            <!-- username -->
+            <div id="signupUserAlert" class="alert alert-danger alert-dismissible" role="alert">
+
+               <strong>Error: </strong> da co loi xay ra
+            </div>
+
+            <div class="input-group input-group-lg">
+               <span class="input-group-addon" id="sizing-addon3">
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+               </span>
+               <input type="text" required autofocus id="signupUser" class="form-control" placeholder="Username" aria-describedby="sizing-addon3">
+            </div>
+
+            <!-- password -->
+            <div class="alert alert-danger alert-dismissible" role="alert">
+               da co loi xay ra
+            </div>
+            <div class="input-group input-group-lg">
+               <span class="input-group-addon" id="sizing-addon3">
+                  <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+               </span>
+               <input type="password" required class="form-control" placeholder="Password" aria-describedby="sizing-addon3">
+            </div>
+
+            <!-- age -->
+            <div class="input-group input-group-lg">
+               <span class="input-group-addon" id="sizing-addon3">
+                  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+               </span>
+               <input type="number" class="form-control" placeholder="Age (format: dd/mm/yyyy)" aria-describedby="sizing-addon3">
+            </div>
+            <button type="submit" class="btn btn-primary" >Sign up</button>
+         </form>
+      </div>
+   </div>
+</div>
+
+<%- include('../partials/footer.ejs') %>

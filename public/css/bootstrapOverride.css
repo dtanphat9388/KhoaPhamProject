@@ -4,6 +4,13 @@ body {
 
 #signinForm {
    width: 50%;
-   height: 50%;
    margin: auto;
+}
+
+.input-group {
+   margin-bottom: 15px;
+}
+
+form button {
+   float: right;
 }
