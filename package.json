@@ -2,6 +2,9 @@
   "name": "KhoaPhamProject",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+     "start": "npm start index.js"
+ }
   "repository": "https://github.com/dtanphat9388/KhoaPhamProject.git",
   "author": "dtanphat9388 <dtanphat9388@gmail.com>",
   "license": "MIT",
