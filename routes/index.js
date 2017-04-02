@@ -11,6 +11,7 @@ router.route('/signin')
       if ( data === null ) {
          res.json(data);
       } else {
+         // làm thêm phần jwt
          data.redirect = "/";
          res.json(data);
       }

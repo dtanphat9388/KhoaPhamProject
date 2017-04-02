@@ -1,10 +1,76 @@
 <%- include('partials/header.ejs') %>
 
    <%- include('layouts/Navbar.ejs') %>
+   <!-- Login modal -->
+   <div id="LoginModal" class="modal fade in" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+         <!-- Modal content-->
+         <div class="modal-content">
+            <div class="modal-body">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h1 style="text-align:center">LOGIN</h1>
+               <div id="alertInfo"></div>
+               <form id="SigninForm">
+                  <div class="input-group input-group-lg">
+                     <span class="input-group-addon" id="sizing-addon3">@</span>
+                     <input type="text" required autofocus autocomplete="off" name="username" placeholder="Username" class="form-control" aria-describedby="sizing-addon3">
+                  </div>
+                  <div class="input-group input-group-lg">
+                     <span class="input-group-addon" id="sizing-addon3">
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                     </span>
+                     <input type="password" required name="password" placeholder="Password" class="form-control" aria-describedby="sizing-addon3">
+                  </div>
+                  <div class="row">
 
-   <%= include('layouts/Body.ejs') %>
+                     <div class="input-group">
+                        <span><a href="/signup">Sign up</a> if not account</span>
+                        <button id="SigninSubmitBtn" data-authenticating-text="Authenticating..." class="btn btn-primary" >Sign in</button>
+                     </div>
+                  </div>
+
+               </form>
+           </div>
+         </div>
+      </div>
+   </div> <!-- /.Login modal -->
+
+   <!-- About modal -->
+   <div id="AboutModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+               <h4 class="modal-title">About this project</h4>
+            </div>
+            <div class="modal-body">
+               <p>
+                  Github source code:
+                  <a href="https://github.com/dtanphat9388/KhoaPhamProject" target="_blank">
+                     https://github.com/dtanphat9388/KhoaPhamProject
+                  </a>
+               </p>
+               <p>
+                  heroku app:
+                  <a href="https://dtanphat9388project1912.herokuapp.com/" target="_blank">
+                     https://dtanphat9388project1912.herokuapp.com/
+                  </a>
+               </p>
+               <p>
+                  video demo:
+                  <a href="https://youtu.be/P_x9Zk9mvOA" target="_blank">
+                     https://youtu.be/P_x9Zk9mvOA
+                  </a>
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   click About for more details .. . ..
 
    <%- include('layouts/Pagination.ejs') %>
 
+   <script src="./js/index.js"></script>
 
 <%- include('partials/footer.ejs') %>
