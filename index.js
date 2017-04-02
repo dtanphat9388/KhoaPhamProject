@@ -1,5 +1,6 @@
 const express = require('express');
-
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const routes = require('./routes');
 
 /*
@@ -13,12 +14,14 @@ app.listen(port, () => console.log(`server started on port ${port}`))
 /*
    express settings
 */
-app.set('view engine', 'ejs');
-app.set('views', 'views');
+app.set('view engine', 'ejs')
+   .set('views', 'views');
 
 
 /*
    use middlewares
 */
 app.use(express.static('./public'))
-app.use('/', routes);
+   .use(cookieParser())
+   .use(bodyParser.urlencoded({extended:true}))
+   .use('/', routes);
