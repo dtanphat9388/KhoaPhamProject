@@ -3,34 +3,42 @@ $( () => {
 /*
    show modals
 */
-
    // show login modal
-   $("#showLoginModal").click(() => {
-      $('#LoginModal').modal('show');
+   $("#showLoginModal").click( e => {
+      $("#LoginModal").modal('show');
 
-      //handle sign in with post method
-      $("#SigninSubmitBtn").click(function(e){
+      $("#LoginForm").submit(function(e){
          e.preventDefault();
 
-         const submitBtn = $(this).button('authenticating');
-         const username = $("input[name='username']").val();
-         const password = $("input[name='password']").val();
+         if( $(this)[0].reportValidity() ) {
+            const submitBtn = $("#SigninSubmitBtn");
+            const username = $("input[id=FormControlUsername]").val();
+            const password = $("input[id=FormControlPassword]").val();
 
-         $.post('/signin', {username, password}, result => {
-            if ( result === null ) {
-               $("#alertInfo").append(`
-                  <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>Authentication error: !</strong> username or password is not correct ....
-                  </div>
-               `);
-               submitBtn.button('reset');
-            } else {
-               window.location = result.redirect;
-            }
-         })
+            submitBtn.button('authenticating');
+
+            $.post('/signin', {username, password}).done( data => {
+               if( data === null ) {
+                  $("#LoginAlert").alert('close')
+                  $("#alertInfo").append(`
+                     <div id="LoginAlert" class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Authentication error: !</strong> username or password is not correct ....
+                     </div>
+                  `);
+                  submitBtn.button('reset');
+               } else {
+                  $("#LoginAlert").alert('close')
+                  window.location = data.redirect;
+               }
+            })
+         }
       })
    })
+
+
 
    // show about modal
    $("#showAboutModal").click(() => {

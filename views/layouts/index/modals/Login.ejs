@@ -1,0 +1,29 @@
+<div id="LoginModal" class="modal fade in" tabindex="-1" role="dialog">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h1 style="text-align:center">LOGIN</h1>
+            <div id="alertInfo"></div>
+            <form id="LoginForm">
+               <div class="input-group input-group-lg">
+                  <span class="input-group-addon" id="sizing-addon3">@</span>
+                  <input type="text" id="FormControlUsername" required autofocus autocomplete="off" name="username" placeholder="Username" class="form-control" aria-describedby="sizing-addon3">
+               </div>
+               <div class="input-group input-group-lg">
+                  <span class="input-group-addon" id="sizing-addon3">
+                     <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                  </span>
+                  <input type="password" id="FormControlPassword" required name="password" placeholder="Password" class="form-control" aria-describedby="sizing-addon3">
+               </div>
+               <div class="input-group input-group-lg">
+                  <button type="submit" id="SigninSubmitBtn" data-authenticating-text="Authenticating..." class="btn btn-primary" style="float: right" >Sign in</button>
+               </div>
+            </form>
+         </div>
+         <div class="modal-footer">
+            <span style="text-align:center"><a href="/signup">Sign up</a> if not account</span>
+         </div>
+      </div>
+   </div>
+</div>
