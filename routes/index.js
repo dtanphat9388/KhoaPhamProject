@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const userModel = require('../database');
+const userModel = require('../database/modelController/user.js');
 
 router.get('/', (req, res) => res.render('index'));
 
@@ -9,10 +9,10 @@ router.route('/signin')
 .post((req, res) => {
    userModel.getUser(req.body).then( data => {
       if ( data === null ) {
-         res.json(data);
+         res.json(null);
       } else {
          // làm thêm phần jwt
-         data.redirect = "/";
+         data.redirect = "/signup";
          res.json(data);
       }
    })
@@ -20,6 +20,16 @@ router.route('/signin')
 
 router.route('/signup')
 .get((req, res) => res.render('./routes/signup'))
-.post((req, res) => res.send('recieved a post'))
+.post((req, res) => userModel.addUser(req.body).then( data => {
+   console.log(24, data);
+   if ( data === null ) {
+      res.json(null);
+   } else {
+      // làm thêm phần jwt
+      data.redirect = "/";
+      console.log(30, data);
+      res.json(data);
+   }
+}))
 
 module.exports = router;

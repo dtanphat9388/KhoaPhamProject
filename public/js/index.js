@@ -18,6 +18,8 @@ $( () => {
             submitBtn.button('authenticating');
 
             $.post('/signin', {username, password}).done( data => {
+               console.log(data);
+               
                if( data === null ) {
                   $("#LoginAlert").alert('close')
                   $("#alertInfo").append(`

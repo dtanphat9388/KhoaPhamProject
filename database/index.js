@@ -19,13 +19,14 @@ const db = new Sequelize(
 )
 
 db.authenticate()
-.then( status => console.log('connected to database') )
+.then( status => console.log('connected to heroku postgres database "d80grv4dsbcbl6"') )
 .catch( status => console.log(status.toString()) )
 
-const User = db.import('./models/user.js')
+db.User = db.import('./models/user.js')
 
 db.sync();
 
+module.exports = db;
 // User.create({username: 'tanphat', password: 'Dtanphat'})
 // .then(data => console.log(data))
 // const obj = {username: 'tanphat', password: 'Dtanphat'};
@@ -33,29 +34,3 @@ db.sync();
 // const username = 'tanphat';
 // const password = 'Dtanphat';
 //
-
-const addUser = ({username, password} = null) => {
-   if (username === null || password === null) return ;
-   return User.create({ username, password}).then( data => data)
-}
-
-const getUser = ({username, password} = null) =>{
-   return User.find({
-      where: {
-         username, password
-      },
-      raw:true
-   }).then(data => data) // return an object
-}
-
-const getUsers = ({username, password} = null) =>{
-   return User.findAll({
-      where: {
-         username, password
-      },
-      raw:true
-   }).then(data => data) // return array of multi object
-}
-
-
-module.exports = { addUser, getUser, getUsers };
