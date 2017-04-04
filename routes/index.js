@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userModel = require('../database/modelController/user.js');
+const jwt = require('../configs/jwt.js');
 
 router.get('/', (req, res) => res.render('index'));
 
@@ -11,9 +12,13 @@ router.route('/signin')
       if ( data === null ) {
          res.json(null);
       } else {
-         // làm thêm phần jwt
-         data.redirect = "/signup";
-         res.json(data);
+         console.log(15, data);
+         jwt.sign( data, ( err, encoded ) => {
+            console.log(17, data, encoded);
+            res.cookie("userinfo", encoded)
+            data.redirect = "/";
+            res.json(data);
+         })
       }
    })
 })
@@ -21,14 +26,16 @@ router.route('/signin')
 router.route('/signup')
 .get((req, res) => res.render('./routes/signup'))
 .post((req, res) => userModel.addUser(req.body).then( data => {
-   console.log(24, data);
+   console.log(29, data);
    if ( data === null ) {
       res.json(null);
    } else {
-      // làm thêm phần jwt
-      data.redirect = "/";
-      console.log(30, data);
-      res.json(data);
+      jwt.sign( data, ( err, encoded ) => {
+         console.log(34, data, encoded);
+         res.cookie("userinfo", encoded)
+         data.redirect = "/";
+         res.json(data);
+      })
    }
 }))
 

@@ -25,7 +25,8 @@ $(() => {
             submitBtn.button('reset');
          } else {
             $("#LoginAlert").alert('close');
-            window.location = data.redirect;
+            console.log('ok');
+            // window.location = data.redirect;
          }
       })
    })
