@@ -26,7 +26,7 @@ $(() => {
          } else {
             $("#LoginAlert").alert('close');
             console.log('ok');
-            // window.location = data.redirect;
+            window.location = data.redirect;
          }
       })
    })
