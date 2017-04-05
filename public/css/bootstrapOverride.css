@@ -3,7 +3,7 @@ body {
 }
 
 #LoginForm {
-   width: 50%;
+   width: 80%;
    margin: auto;
 }
 
@@ -11,6 +11,6 @@ body {
    margin-bottom: 15px;
 }
 
-form button {
-   float: right;
+form button[type=submit]{
+   float: right
 }
