@@ -1,13 +1,13 @@
 const { User } = require('../index.js');
 
-const addUser = ({username, password} = null) => {
+const add = ({username, password} = null) => {
    return User.find({ where: { username } }).then( data => {
       if ( data === null) return User.create({username, password}).then( data => data.dataValues)
       return null;
    })
 }
 
-const getUser = ({username, password} = null) =>{
+const get = ({username, password} = null) =>{
    return User.find({
       where: {
          username, password
@@ -16,7 +16,7 @@ const getUser = ({username, password} = null) =>{
    }).then(data => data) // return an object
 }
 
-const getUsers = ({username, password} = null) => {
+const gets = ({username, password} = null) => {
    return User.findAll({
       where: {
          username, password
@@ -26,4 +26,4 @@ const getUsers = ({username, password} = null) => {
 }
 
 
-module.exports = { addUser, getUser, getUsers };
+module.exports = { add, get, gets };
