@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="http://localhost:3000" target="_blank">
+    <meta charset="utf-8">
+    <title>gfsgfs</title>
+    <style media="screen">
+      div {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+      }
+      img {
+        width: 100%;
+        height: auto;
+
+      }
+    </style>
+  </head>
+  <body>
+    <input type="number" name="imageid">
+    <button type="button" name="button">getimage</button>
+    <div>
+      <img src="">
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      $(() => {
+        $("button").click(function(e){
+          const imageid = $("input").val();
+          console.log(imageid);
+          $.get('/imageid',{ imageid }, data => {
+            console.log(typeof data);
+            $("img").prop('src', `./image/${data}`)
+          })
+        })
+      })
+    </script>
+  </body>
+</html>
