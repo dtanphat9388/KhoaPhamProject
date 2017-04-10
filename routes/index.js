@@ -48,7 +48,12 @@ upload product with multerJS
 router.route('/upload')
   .get((req, res) => {res.render('./routes/upload')})
   .post((req, res) => upload(req, res, err => {
-    if (err) return;
+    if (err) return res.json({
+      "Error": err.toString(),
+      "Files suport": {
+        "image": ["bmp", "png", "jpeg"]
+      }
+    });
 
     const {name, desc} = req.body;
     const imgsrc = req.file.filename;
