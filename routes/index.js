@@ -49,9 +49,9 @@ router.route('/upload')
   .get((req, res) => {res.render('./routes/upload')})
   .post((req, res) => upload(req, res, err => {
     if (err) return;
+
     const {name, desc} = req.body;
     const imgsrc = req.file.filename;
-    console.log(name, desc, imgsrc);
     productModel.add(name, desc, imgsrc)
     .then(() => res.redirect('/'))
   }));
@@ -59,14 +59,12 @@ router.route('/upload')
 /*
   API to get Product model
 */
-router.get('/img', async (req, res) => {
-  let image = await productModel.getImage(req.query.imageid);
-  res.send(image)
+router.get('/img', (req, res) => {
+  productModel.getImage(req.query.imageid).then(image => res.send(image));
 })
 
-router.get('/imgs', async (req, res) => {
-  var arrImage = await productModel.getPage(req.query.page - 1);
-  res.send(arrImage);
+router.get('/imgs', (req, res) => {
+  productModel.getPage(req.query.page - 1).then(arrImage => res.send(arrImage));
 })
 
 module.exports = router;
