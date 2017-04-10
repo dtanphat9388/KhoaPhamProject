@@ -72,7 +72,7 @@ $( () => {
 
   function getImageOnPage(page = 1) {
     $.get('/imgs', {page}, data => {
-      console.log(8, data);
+      console.log(`Product on page ${page}: `, data);
       $(imageList).empty();
       data.forEach(image => $(imageList).append(`
         <div class="col-xs-6 col-md-3">

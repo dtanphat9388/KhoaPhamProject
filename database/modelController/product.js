@@ -1,7 +1,7 @@
 const { Product } = require('../index.js');
 
-const add = imgsrc => {
-  return Product.create({imgsrc})
+const add = (name, desc, imgsrc) => {
+  return Product.create({name, desc, imgsrc})
 };
 
 const getImage = id => {
