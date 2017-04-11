@@ -1,0 +1,17 @@
+<%- include('partials/header.ejs')%>
+
+  <div style="display: inline-flex; margin-top: 20px">
+    <div style="margin-right: 25px">
+      <img src="/image/<%= product.imgsrc%>" alt="chua load image">
+    </div>
+    <div>
+      <p><strong>Product name:</strong> <%= product.name%></p>
+      <p><strong>Product description:</strong> <%= product.desc%></p>
+      <button id="<%= product.id %>" class="btn btn-primary glyphicon glyphicon-shopping-cart addCartBtn" role="button"></button>
+    </div>
+  </div>
+
+<script src="/js/productDetail.js">
+
+</script>
+<%- include('partials/footer.ejs')%>

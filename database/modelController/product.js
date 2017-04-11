@@ -4,20 +4,31 @@ const add = (name, desc, imgsrc) => {
   return Product.create({name, desc, imgsrc})
 };
 
-const getImage = id => {
+const get= id => {
   return  Product.find({
             raw:true,
             where : {id}
           })
-          .then( image => image.imgsrc)
+          .then( product => product)
           .catch(e => "no data")
 };
 
-const getPage = (page = 1)  => {
+const getOnCart = (arrProductList) => {
+  return  Product.findAll({
+            raw:true,
+            where : {
+              id: {$in: arrProductList}
+            }
+          })
+          .then( image => image)
+          .catch(e => "no data")
+};
+
+const getOnPage = (page = 1)  => {
   const limit = 6;
   const offset = limit*page ;
 
   return Product.findAll({limit, offset, raw: true})
 };
 
-module.exports = { add, getImage, getPage }
+module.exports = { add, get, getOnCart, getOnPage }

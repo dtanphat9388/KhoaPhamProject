@@ -3,7 +3,14 @@ $( () => {
   onload
 */
   var currentPage = 1;
+  const cartList = [];
   getImageOnPage(currentPage);
+
+/*
+  handle view product & Add to cart
+*/
+
+
 
 /*
    show modals
@@ -50,7 +57,11 @@ $( () => {
     $('#AboutModal').modal('show');
   });
 
-  // handle pagination
+
+
+/*
+  handle pagination
+*/
   const imageList = document.querySelector("#imageList");
   const pageList = document.querySelector(".pagination");
   const pageListNumber = pageList.childElementCount - 2 ; // -2 button Prev && Next
@@ -71,25 +82,63 @@ $( () => {
   }
 
   function getImageOnPage(page = 1) {
-    $.get('/imgs', {page}, data => {
+    $.get('/page', {page}, data => {
       console.log(`Product on page ${page}: `, data);
-      $(imageList).empty();
-      data.forEach(image => $(imageList).append(`
+      $(imageList).empty(); //remove products in #imageList after append new products
+      data.forEach(product => $(imageList).append(`
         <div class="col-xs-6 col-md-3">
           <div class="thumbnail" >
-            <img id="${image.id}" src="./image/${image.imgsrc}" alt="chua co hinh" style="background-color:#ea4335;width:100px;height:100px;border-radius: 50%;">
+            <img src="/image/${product.imgsrc}" alt="chua co hinh" style="background-color:#ea4335;width:100px;height:100px;border-radius: 50%;">
             <div class="caption">
-              <h3>${image.name}</h3>
-              <p>${image.desc}</p>
+              <h3>${product.name}</h3>
+              <p>${product.desc}</p>
               <p>
-                <a href="#" class="btn btn-primary" role="button">View</a>
-                <a href="#" class="btn btn-default" role="button">Add to cart</a>
+                <a href="./product/detail/${product.id}" class="btn btn-default" role="button">View</a>
+                <button id=${product.id} class="btn btn-primary glyphicon glyphicon-shopping-cart addCartBtn" role="button"></button>
               </p>
             </div>
           </div>
         </div>
       `))
+      $(".addCartBtn").click(e => {
+        console.log(e.target.id);
+        localStorage[e.target.id]= e.target.id;
+        console.log(localStorage);
+      })
     })
   }
 
+/*
+  handle Cart
+*/
+  let arrProductCart;
+
+
+  $("#CartListModal").on("shown.bs.modal", function(e) {
+    $("#CartListModal .modal-body").empty();
+    arrProductCart = Object.keys(localStorage);
+    console.log(arrProductCart);
+
+    getProductOnCart(arrProductCart);
+    $("#btnClearCart").click( e => {
+      localStorage.clear();
+      $("#CartListModal").modal('close');
+    })
+  })
+
+  function getProductOnCart(arrProductCart){
+    $.get('/cart', {arrProductCart}, arrProducts => {
+      $("#CartListModal").modal('show');
+      // console.log(e);
+      arrProducts.forEach(product => {
+        $("#CartListModal .modal-body").append(`
+              <li>
+                <img src="/image/${product.imgsrc}">
+                <h2>${product.name}</h2>
+                <p>${product.desc}</p>
+              </li>
+        `)
+      })
+    })
+  }
 })

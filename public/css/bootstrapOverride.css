@@ -14,3 +14,21 @@ body {
 form button[type=submit]{
    float: right
 }
+
+.navbar-default .navbar-toggle {
+    border-style: none;
+}
+.badge {
+  background-color: #337ab7;
+}
+
+#CartListModal .modal-body li {
+  list-style-type: none;
+  overflow: auto;
+}
+
+#CartListModal .modal-body li img {
+  width: 80px;
+  height: 80px;
+  float:left;
+}
