@@ -118,18 +118,22 @@ $( () => {
     $("#CartListModal .modal-body").empty();
     arrProductCart = Object.keys(localStorage);
     console.log(arrProductCart);
+    if (arrProductCart.length) {
+      getProductOnCart(arrProductCart);
+      $("#btnClearCart").click( e => {
+        localStorage.clear();
+        $("#CartListModal").modal('close');
+      })
+    }
+  })
 
-    getProductOnCart(arrProductCart);
-    $("#btnClearCart").click( e => {
-      localStorage.clear();
-      $("#CartListModal").modal('close');
-    })
+  $("#CartListModal").on("hidden.bs.modal", function(e) {
+
   })
 
   function getProductOnCart(arrProductCart){
     $.get('/cart', {arrProductCart}, arrProducts => {
       $("#CartListModal").modal('show');
-      // console.log(e);
       arrProducts.forEach(product => {
         $("#CartListModal .modal-body").append(`
               <li>
