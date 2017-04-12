@@ -25,6 +25,7 @@ form button[type=submit]{
 #CartListModal .modal-body li {
   list-style-type: none;
   overflow: auto;
+  text-align: center;
 }
 
 #CartListModal .modal-body li img {

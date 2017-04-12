@@ -102,7 +102,9 @@ $( () => {
       `))
       $(".addCartBtn").click(e => {
         console.log(e.target.id);
-        localStorage[e.target.id]= e.target.id;
+        const productID = e.target.id;
+        localStorage[productID]= productID;
+        $(".badge").html(localStorage.length)
         console.log(localStorage);
       })
     })
@@ -112,7 +114,11 @@ $( () => {
   handle Cart
 */
   let arrProductCart;
-
+  if(localStorage.length){
+    $(".badge").html(localStorage.length)
+  } else {
+    $(".badge").html('')
+  }
 
   $("#CartListModal").on("shown.bs.modal", function(e) {
     $("#CartListModal .modal-body").empty();
@@ -122,6 +128,7 @@ $( () => {
       getProductOnCart(arrProductCart);
       $("#btnClearCart").click( e => {
         localStorage.clear();
+        $(".badge").html("");
         $("#CartListModal").modal('close');
       })
     }
