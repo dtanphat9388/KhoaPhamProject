@@ -33,3 +33,8 @@ form button[type=submit]{
   height: 80px;
   float:left;
 }
+
+#signupFormContainer {
+  width: 450px;
+  margin: auto;
+}
