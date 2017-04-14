@@ -121,13 +121,14 @@ $( () => {
   }
 
   $("#CartListModal").on("shown.bs.modal", function(e) {
-    $("#CartListModal .modal-body").empty();
+    
     arrProductCart = Object.keys(localStorage);
     console.log(arrProductCart);
     if (arrProductCart.length) {
       getProductOnCart(arrProductCart);
       $("#btnClearCart").click( e => {
         localStorage.clear();
+        $("#CartListModal .modal-body").empty();
         $(".badge").html("");
         $("#CartListModal").modal('close');
       })
