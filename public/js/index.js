@@ -120,8 +120,10 @@ $( () => {
     $(".badge").html('')
   }
 
+
+
   $("#CartListModal").on("shown.bs.modal", function(e) {
-    
+
     arrProductCart = Object.keys(localStorage);
     console.log(arrProductCart);
     if (arrProductCart.length) {
@@ -136,7 +138,8 @@ $( () => {
   })
 
   $("#CartListModal").on("hidden.bs.modal", function(e) {
-
+    $("#CartListModal .modal-body").empty();
+    console.log("cart modal hidden");
   })
 
   function getProductOnCart(arrProductCart){
